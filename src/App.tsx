@@ -2,13 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Card from './components/Card'
+import { Link } from 'react-router'
+import { Button } from './components/ui/button'
 
 function App() {
     const [count, setCount] = useState(0)
 
     return (
         <>
+        <Link to="/home">
+            <Button>
+                Home
+            </Button>
+        </Link>
+        <h1 className='text-red-900
+'>ANYEONG</h1>
             <div>
                 <a href="https://vite.dev" target="_blank">
                     <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -29,8 +37,6 @@ function App() {
             <p className="read-the-docs">
                 Click on the Vite and React logos to learn more
             </p>
-            <Card title="Joren" desc="desc"/>
-            <Card title="Napa" desc="erm yeah"/>
         </>
     )
 }

@@ -3,58 +3,97 @@ import { ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import BottomNav from "./BottomNav"
+import { useTheme } from "@/components/theme-provider"
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const Header = () => {
+    const { setTheme } = useTheme()
+
     return (
-        <>
-            <div className="flex justify-between py-2">
-                <div>
-                    <Link to="/home">
-                        <Button variant="ghost" size="icon">
-                            <ChevronLeft />
-                        </Button>
-                    </Link>
-                </div>
-                <div>
-                    <div className="text-center text-xl font-bold">
-                        Header typeshit
+        <div>
+            <div className="p-2">
+                <header className="flex justify-between mb-4">
+                    <div>
+                        <Link to="/">
+                            <Button variant="ghost" size="icon">
+                                <ChevronLeft />
+                            </Button>
+                        </Link>
                     </div>
-                </div>
-                <div>
-                    <Link to="/profile">
-                        <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" />
-                            <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                    </Link>
-                </div>
+                    <div>
+                        <div className="text-center text-xl font-bold">
+                            Header
+                        </div>
+                    </div>
+                    <div>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost">
+                                    <Avatar>
+                                        <AvatarImage src="https://github.com/shadcn.png" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem >
+                                        <span>Profile</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSub>
+                                        <DropdownMenuSubTrigger>
+                                            <span>Theme</span>
+                                        </DropdownMenuSubTrigger>
+                                        <DropdownMenuPortal>
+                                            <DropdownMenuSubContent>
+                                                <DropdownMenuItem onClick={() => setTheme("light")}>
+                                                    Light
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                                                    Dark
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => setTheme("system")}>
+                                                    System
+                                                </DropdownMenuItem>
+                                            </DropdownMenuSubContent>
+                                        </DropdownMenuPortal>
+                                    </DropdownMenuSub>
+                                </DropdownMenuGroup>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <span>Log out</span>
+                                    {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </header>
+                <hr />
+                <Outlet />
             </div>
-            <hr />
-            <Outlet />
 
             <div className="absolute bottom-0 red-800">
-                <NavigationMenu>
-                    <NavigationMenuList>
-                        <NavigationMenuItem>
-                            <Button>Getting started</Button>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                    </NavigationMenu>
+                <BottomNav />
             </div>
 
-        </>
+        </div>
     )
 }
 
 export default Header
+

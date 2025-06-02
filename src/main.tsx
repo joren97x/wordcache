@@ -30,11 +30,22 @@ const router = createBrowserRouter([
             { path: '/', Component: Home },
             { path: '/profile', Component: Profile },
             { path: '/quiz', Component: Quiz },
-            { path: '/word/:id', Component: ViewWord },
+            { path: '/word/:id', 
+                loader: async ({params}) => {
+                    const word = {
+                        title: "title",
+                        definition: "lorem ipsum",
+                        examples: "yeah, yeassirhiskie",
+                        word_id: params.id
+                    }
+                    return word
+                },
+                Component: ViewWord 
+            },
             { path: '/word/:id/edit', 
                 loader: async ({params}) => {
                     const word = {
-                        word: "title",
+                        title: "title",
                         definition: "lorem ipsum",
                         examples: "yeah, yeassirhiskie",
                         word_id: params.id

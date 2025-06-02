@@ -4,12 +4,8 @@ import {
     Card,
     CardContent,
 } from "@/components/ui/card"
-type Word = {
-  id: number;
-  word: string;
-  definition: string;
-  examples: string;
-};
+import type { Word } from "@/types/index.ts"
+
 type CardProps = React.ComponentProps<typeof Card>
 
 interface VocabularyCardProps extends CardProps {
@@ -23,7 +19,7 @@ export default function VocabularyCard({ className, word,...props }: VocabularyC
                 <div className=" flex items-center space-x-4 rounded-md">
                     <div className="flex-1 space-y-1">
                         <p className="text-sm font-medium leading-none">
-                            {word.word}
+                            {word.title}
                         </p>
                         <p className="text-sm text-muted-foreground">
                             {word.definition}

@@ -1,7 +1,6 @@
-import { Outlet } from "react-router"
+import { Outlet, Link } from "react-router"
 import { ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import BottomNav from "./BottomNav"
 import { useTheme } from "@/components/theme-provider"
@@ -52,8 +51,10 @@ const Header = () => {
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
-                                    <DropdownMenuItem >
-                                        <span>Profile</span>
+                                    <DropdownMenuItem>
+                                        <Link to="/profile">
+                                            <span>Profile</span>
+                                        </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuSub>
                                         <DropdownMenuSubTrigger>

@@ -31,10 +31,10 @@ function EditWord() {
                 </CardContent>
                 <CardFooter className="flex-col gap-2">
                     <Button type="submit" className="w-full">
-                        Login
+                        Save changes
                     </Button>
                     <Button variant="outline" className="w-full">
-                        Login with Google
+                        Delete vocabulary
                     </Button>
                 </CardFooter>
             </Card>

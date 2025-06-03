@@ -14,6 +14,7 @@ import Quiz from './pages/Quiz.tsx';
 import ViewWord from './pages/ViewWord.tsx';
 import EditWord from './pages/EditWord.tsx';
 import { ThemeProvider } from './components/theme-provider.tsx';
+import QuizResults from './pages/QuizResults.tsx'
 
 const router = createBrowserRouter([
     {
@@ -29,7 +30,38 @@ const router = createBrowserRouter([
         children: [
             { path: '/', Component: Home },
             { path: '/profile', Component: Profile },
-            { path: '/quiz', Component: Quiz },
+            { path: '/quiz',
+                loader: async({params}) => {
+                    const vocabularies = [
+                        {
+                            title: "entitlement",
+                            definition: "lorem ipsum",
+                            examples: "yeah, yeassirhiskie",
+                            word_id: params.id
+                        },
+                        {
+                            title: "perpetual",
+                            definition: "lorem ipsum",
+                            examples: "yeah, yeassirhiskie",
+                            word_id: params.id
+                        },
+                        {
+                            title: "rendezvous",
+                            definition: "lorem ipsum",
+                            examples: "yeah, yeassirhiskie",
+                            word_id: params.id
+                        },
+                    ]
+                    return vocabularies
+                },
+                 Component: Quiz 
+            },
+            { path: '/quiz/:id',
+                loader: async({params}) => {
+                    
+                },
+                 Component: QuizResults
+            },
             { path: '/word/:id', 
                 loader: async ({params}) => {
                     const word = {
